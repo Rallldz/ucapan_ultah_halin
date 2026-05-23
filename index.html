@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Halin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FFF8F0;
+    --blush: #F2C4C4;
+    --rose: #D97B7B;
+    --deep: #8B3A3A;
+    --gold: #C9A84C;
+    --light-gold: #F5E6C0;
+    --text: #3D2020;
+    --muted: #9E6B6B;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* FLOATING PETALS */
+  .petal-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    top: -40px;
+    font-size: 1.4rem;
+    animation: fall linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-40px) rotate(0deg); opacity: 0.7; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--light-gold);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    padding: 0.35rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--deep);
+    animation: fadeUp 0.9s ease both 0.1s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--rose);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    font-weight: 300;
+    animation: fadeUp 1s ease both 0.2s;
+    max-width: 400px;
+  }
+
+  .hero-divider {
+    margin: 2rem auto;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    animation: fadeUp 1s ease both 0.3s;
+  }
+
+  .scroll-hint {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    animation: fadeUp 1s ease both 0.5s, bob 2s ease-in-out infinite 1.5s;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 0.5rem;
+  }
+
+  section h2 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  /* WISH CARD */
+  .wish-card {
+    background: white;
+    border: 1px solid var(--blush);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 40px rgba(217, 123, 123, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wish-card::before {
+    content: '❝';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--blush);
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    line-height: 1;
+    opacity: 0.5;
+  }
+
+  .wish-card p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+  }
+
+  .wish-card p + p {
+    margin-top: 1rem;
+  }
+
+  .wish-card .sign {
+    margin-top: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--rose);
+    text-align: right;
+  }
+
+  /* NOTE CARD (apologetic) */
+  .note-wrapper {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .note-tape {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 80px;
+    height: 28px;
+    background: rgba(201, 168, 76, 0.35);
+    border-radius: 3px;
+    border: 1px solid rgba(201, 168, 76, 0.5);
+    z-index: 2;
+  }
+
+  .note-card {
+    background: #FFFEF5;
+    border: 1px solid #E8DBA0;
+    border-radius: 4px;
+    padding: 2rem 2rem 2rem 5rem;
+    box-shadow: 3px 4px 18px rgba(0,0,0,0.08);
+    position: relative;
+    line-height: 1.9;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .note-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 3.5rem;
+    width: 1px;
+    height: 100%;
+    background: rgba(217, 123, 123, 0.25);
+  }
+
+  .note-card .note-lines {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .note-card .note-lines::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 28px,
+      rgba(180, 210, 240, 0.25) 28px,
+      rgba(180, 210, 240, 0.25) 29px
+    );
+    background-position: 0 28px;
+  }
+
+  .note-card p {
+    position: relative;
+    z-index: 1;
+  }
+
+  .note-card p + p {
+    margin-top: 0.5rem;
+  }
+
+  .note-emph {
+    background: rgba(201, 168, 76, 0.2);
+    padding: 0 4px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .note-card .note-sign {
+    margin-top: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--rose);
+  }
+
+  /* VIDEO SECTION */
+  .video-section {
+    padding: 4rem 2rem;
+  }
+
+  .video-label {
+    display: inline-block;
+    background: var(--blush);
+    color: var(--deep);
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .video-wrap {
+    margin-top: 1.5rem;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid var(--blush);
+    box-shadow: 0 8px 50px rgba(217, 123, 123, 0.15);
+    aspect-ratio: 16/9;
+    background: #f0d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .video-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 2rem 4rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer .big-heart {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.2); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.15); }
+    70% { transform: scale(1); }
+  }
+
+  footer .confetti-row {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    margin-top: 0.5rem;
+  }
+
+  /* DECORATIVE BORDER TOP */
+  .section-border {
+    border-top: 1px dashed var(--blush);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 500px) {
+    .hero-title { font-size: 3rem; }
+    .note-card { padding-left: 3rem; }
+    .note-card::before { left: 2.5rem; }
+    section { padding: 3rem 1.2rem; }
+    .video-section { padding: 3rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING PETALS -->
+<div class="petal-container" id="petals"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Spesial Buat Kamu ✦</div>
+  <h1 class="hero-title">
+    Selamat Ulang<br>
+    <em>Tahun, Halin!</em>
+  </h1>
+  <p class="hero-sub">Semoga hari istimewamu dipenuhi kebahagiaan yang tiada habisnya 🌸</p>
+  <div class="hero-divider"></div>
+  <div class="scroll-hint">↓ scroll ke bawah ↓</div>
+</div>
+
+<!-- WISH SECTION -->
+<section>
+  <div class="hero-badge" style="margin-bottom:1rem;">Ucapan</div>
+  <h2>Buat <em>Halin</em> waketum terhebat, ter the best, ter favorit</h2>
+  <div class="wish-card">
+    <p>Halin, selamat ulang tahun! Di hari yang spesial ini, semoga segala hal baik terus datang buat kamu — kebahagiaan yang nggak ada habisnya, kesehatan selalu, dan semua impian yang kamu kejar pelan-pelan terwujud satu per satu.</p>
+    <p>Semoga tahun ini jadi tahun yang lebih seru, lebih bermakna, dan makin banyak hal yang bikin kamu tersenyum lebar. Kamu udah keren banget, dan pasti bakal makin keren ke depannya</p>
+    <p>Nikmatin hari ini sepenuhnya ya — kamu pantas dapat semua hal yang indah. Happy birthday</p>
+    <div class="sign">dengan tulus Gahrald & Rafif</div>
+  </div>
+</section>
+
+<!-- APOLOGETIC NOTE SECTION -->
+<section class="section-border">
+  <div class="hero-badge" style="margin-bottom:1rem; background: var(--light-gold); color: var(--gold); border-color: var(--gold);">📝 Catatan Penting</div>
+  <h2>Eh, tunggu dulu —<br><em>ada pengakuan</em></h2>
+
+  <div class="note-wrapper">
+    <div class="note-tape"></div>
+    <div class="note-card">
+      <div class="note-lines"></div>
+      <p>Halin, jujur nih ya...</p>
+      <p>Sebenernya udah niat banget mau bikin poster buat ultahmu dari kemarin</p>
+      <p>Tapi ternyata lagi super sibuk nyiapin <span class="note-emph">ICT Fair</span> yang butuh banyak banget tenaga & pikiran. Jadi ya... posternya ketunda deh. Maafin ya 🙏</p>
+      <p>Parahnya lagi, pas udah ada waktu dikit, udah mau mulai buat posternya — eh malah <span class="note-emph">codingannya error mulu</span>. Bug satu beres, bug lain muncul. Capek deh nge-debug sampe lupa hal lain</p>
+      <p>Jadi daripada nggak kasih apa-apa sama sekali, sekarang dibuatin website deh sekalian! Semoga ini bisa jadi gantinya poster yang terlambat itu ya hehe</p>
+      <p>Sekali lagi, <span class="note-emph">maaf ya Halin!</span> Tapi ultahmu tetep diinget kok, cuma eksekusinya yang agak... berantakan 😂</p>
+      <div class="note-sign">permintaan maaf dari Gahrald & Rafif</div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section section-border" style="max-width:720px; margin:0 auto;">
+  <div class="video-label">🎬 Video Spesial</div>
+  <h2 style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--deep); margin-bottom:0.5rem;">Ini buat <em style="color:var(--rose);">kamu</em> 🎁</h2>
+  <p style="color:var(--muted); font-size:0.95rem; margin-bottom:0.5rem;">Video kecil sebagai pelengkap ucapan — semoga suka ya!</p>
+
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata">
+      <source src="halin.mp4" type="video/mp4">
+      <p style="color:var(--muted); padding:1rem; text-align:center;">Video tidak dapat diputar di browser ini.</p>
+    </video>
+  </div>
+  <p class="video-note">Dengan sepenuh hati, video ini dibuat spesial buat Halin</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="big-heart">🌸</span>
+  <p>Sekali lagi, <strong>Happy Birthday Halin!</strong></p>
+  <p>Maaf ya posternya telat — tapi sayangnya nggak telat kok</p>
+  <div class="confetti-row"></div>
+</footer>
+
+<script>
+  const PETALS = ['🌸'];
+  const container = document.getElementById('petals');
+
+  function createPetal() {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.textContent = PETALS[Math.floor(Math.random() * PETALS.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (0.9 + Math.random() * 0.8) + 'rem';
+    const dur = 6 + Math.random() * 8;
+    const delay = Math.random() * 6;
+    el.style.animation = `fall ${dur}s ${delay}s linear infinite`;
+    el.style.opacity = 0.4 + Math.random() * 0.4;
+    container.appendChild(el);
+  }
+
+  for (let i = 0; i < 22; i++) createPetal();
+
+  // Intersection-based fade-in for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('section, footer').forEach(el => {
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
